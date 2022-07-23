@@ -13,8 +13,8 @@ public class DBDemo {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(jdbcURL, userName, password);
-            Statement statement = connection.createStatement();
-            statement.execute("UPDATE employee SET salary=4000000.00 WHERE name='Terisa'");
+            PreparedStatement statement = connection.prepareStatement("UPDATE employee SET salary=5000000.00 WHERE name='Terisa'");
+            statement.executeUpdate();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM employee ");
             while (resultSet.next()) {
                 System.out.println(resultSet.getInt(1) + " " + resultSet.getString(2) + " " + resultSet.getString(3) + " " + resultSet.getString(4) + " " + resultSet.getString(5));
