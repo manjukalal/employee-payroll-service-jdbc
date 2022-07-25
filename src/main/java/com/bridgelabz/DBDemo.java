@@ -13,12 +13,15 @@ public class DBDemo {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(jdbcURL, userName, password);
-           Statement statement = connection.createStatement();
+            Statement statement = connection.createStatement();
 //            PreparedStatement statement = connection.prepareStatement("UPDATE employee SET salary=5000000.00 WHERE name='Terisa'");
 //            statement.executeUpdate();
-            statement.execute("insert into employee values (4,'vani','F',2000000,'2022-07-25')");
+
+//            statement.execute("INSERT into employee VALUES (4,'vani','F',2000000,'2022-07-25')");
+            statement.execute("DELETE from employee WHERE name = 'charlie'");
+//              ResultSet resultSet = statement.executeQuery("SELECT SUM(salary) FROM employee ");
             ResultSet resultSet = statement.executeQuery("SELECT * FROM employee ");
-//            ResultSet resultSet = statement.executeQuery(" select * from employee where start BETWEEN CAST('2020-02-05' AS DATE) AND DATE(NOW()); ");
+//            ResultSet resultSet = statement.executeQuery(" SELECT * from employee WHERE start BETWEEN CAST('2020-02-05' AS DATE) AND DATE(NOW()); ");
 
             while (resultSet.next()) {
                 System.out.println(resultSet.getInt(1) + " " + resultSet.getString(2) + " " + resultSet.getString(3) + " " + resultSet.getString(4) + " " + resultSet.getString(5));
